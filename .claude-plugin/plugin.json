@@ -1,0 +1,18 @@
+{
+  "name": "pigweed-expert",
+  "description": "Ensures idiomatic Pigweed usage in planning, implementation, and code review. Fetches latest documentation from pigweed.dev and provides deep analysis with extended thinking.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Mike"
+  },
+  "keywords": [
+    "pigweed",
+    "embedded",
+    "firmware",
+    "c++",
+    "bazel",
+    "code-review",
+    "best-practices"
+  ],
+  "license": "MIT"
+}

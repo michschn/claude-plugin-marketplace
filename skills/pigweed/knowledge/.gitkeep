@@ -1,0 +1,6 @@
+# This directory stores cached Pigweed documentation
+# Run /pw-update-docs to populate
+
+# Files generated:
+# - SUMMARY.md: Comprehensive module summary
+# - metadata.json: Cache freshness info
