@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "pigweed-expert",
-      "source": ".",
+      "source": "./",
       "description": "Ensures idiomatic Pigweed usage in planning and code review"
     }
   ]
