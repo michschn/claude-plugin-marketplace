@@ -1,14 +1,19 @@
 {
-  "name": "claude-plugin-marketplace",
-  "description": "A collection of Claude Code plugins for various development workflows",
+  "name": "mike-claude-plugins",
+  "description": "Mike's Claude Code plugins for embedded development and documentation management",
   "owner": {
     "name": "Mike"
   },
   "plugins": [
     {
       "name": "pigweed-expert",
-      "source": "./",
+      "source": "./plugins/pigweed-expert",
       "description": "Ensures idiomatic Pigweed usage in planning and code review"
+    },
+    {
+      "name": "docs-expert",
+      "source": "./plugins/docs-expert",
+      "description": "Documentation guardian for ADRs, requirements, and code-docs consistency"
     }
   ]
 }

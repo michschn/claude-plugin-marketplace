@@ -1,0 +1,17 @@
+{
+  "name": "docs-expert",
+  "description": "Documentation guardian that maintains ADRs, requirements, and ensures code aligns with documented decisions. Proactively prompts for ADRs on significant changes.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Mike"
+  },
+  "keywords": [
+    "documentation",
+    "adr",
+    "architecture-decision-records",
+    "requirements",
+    "code-review",
+    "consistency"
+  ],
+  "license": "MIT"
+}
