@@ -1,6 +1,6 @@
 {
   "name": "ntag424-expert",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Expert assistant for NTAG 424 DNA secure NFC tag development - authentication, SUN messaging, and file operations",
   "author": {
     "name": "Mike"

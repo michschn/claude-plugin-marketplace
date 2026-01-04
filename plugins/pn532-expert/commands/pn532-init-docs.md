@@ -1,43 +1,72 @@
 # /pn532-init-docs
 
-Initialize or update the PN532 knowledge base from PDF documentation.
+Initialize or update the PN532 knowledge base from datasheet page images.
 
 ## Usage
 ```
-/pn532-init-docs [path-to-pdf]
+/pn532-init-docs
+/pn532-init-docs [chapter-or-page-range]
 ```
 
 ## Examples
 ```
-/pn532-init-docs ~/Documents/datasheets/PN532_User_Manual.pdf
+/pn532-init-docs
+/pn532-init-docs pages 41-55
+/pn532-init-docs commands chapter
 ```
 
-## Behavior
+## CRITICAL: Do NOT Read PDFs Directly
 
-**IMPORTANT**: The PDF is too large to read directly. Process it chapter-by-chapter as images to preserve diagrams.
+**STOP. You MUST NOT attempt to read any PDF file directly.** PDFs are too large and will fail. This command works with pre-converted page images only.
 
-### 1. Setup - Convert PDF to Page Images
+## Step 1: Check for Existing Page Images (ALWAYS DO THIS FIRST)
 
-```bash
-# Install poppler-utils if needed (Ubuntu/Debian)
-sudo apt-get install poppler-utils
+Before anything else, check if page images exist:
 
-# Get the plugin directory (adjust path as needed)
-PLUGIN_DIR=~/.claude/plugins/installed/pn532-expert
-# Or if using local marketplace:
-# PLUGIN_DIR=/path/to/claude-plugins-marketplace/plugins/pn532-expert
-
-# Create pages directory inside .skills
-mkdir -p "$PLUGIN_DIR/.skills/pn532/pages"
-
-# Convert PDF to PNG images (one per page, 150 DPI for good quality)
-pdftoppm -png -r 150 "/path/to/PN532_User_Manual.pdf" "$PLUGIN_DIR/.skills/pn532/pages/page"
-
-# Verify
-ls "$PLUGIN_DIR/.skills/pn532/pages/"*.png | wc -l
+```
+Check if directory exists: .skills/pn532/pages/
+If exists, list PNG files to see what's available
 ```
 
-The page images are now stored at:
+### If page images DO exist:
+Skip to **Step 3: Process Page Images**
+
+### If page images do NOT exist:
+Tell the user they need to create them first, then STOP. Do not attempt to read any PDF.
+
+**Tell the user:**
+```
+Page images not found at .skills/pn532/pages/
+
+To initialize the knowledge base, first convert the PDF to images:
+
+1. Install poppler-utils if needed:
+   sudo apt-get install poppler-utils
+
+2. Create the pages directory:
+   mkdir -p /path/to/plugin/.skills/pn532/pages
+
+3. Convert the PDF to PNG images:
+   pdftoppm -png -r 150 "/path/to/PN532_User_Manual.pdf" ".skills/pn532/pages/page"
+
+4. Run this command again once images are created.
+
+The plugin directory is typically:
+- Installed: ~/.claude/plugins/installed/pn532-expert
+- Local dev: /path/to/claude-plugins-marketplace/plugins/pn532-expert
+```
+
+**Then STOP. Do not continue until the user creates the images.**
+
+## Step 2: Verify Page Images
+
+Once the user confirms images exist, verify them:
+
+```
+ls .skills/pn532/pages/*.png | wc -l
+```
+
+Expected structure:
 ```
 .skills/pn532/pages/
 ├── page-01.png
@@ -46,12 +75,14 @@ The page images are now stored at:
 ...
 ```
 
-### 2. Get Document Structure
+## Step 3: Process Page Images
 
-View the table of contents (usually first few pages):
+### Get Document Structure
+
+View the table of contents (first few pages) to understand the document:
 
 ```
-View .skills/pn532/pages/page-01.png through page-05.png to find TOC
+Read .skills/pn532/pages/page-01.png through page-05.png
 ```
 
 Typical PN532 User Manual structure:
@@ -59,11 +90,11 @@ Typical PN532 User Manual structure:
 |---------|---------------|---------|----------|
 | 1-2 | 1-10 | Overview, Features | Low |
 | 3-5 | 11-25 | Pins, Interfaces (HSU/I2C/SPI) | Medium |
-| 6 | 26-40 | Host interface, Frame format | ⭐ High |
-| 7-9 | 41-90 | Commands | ⭐⭐ Critical |
+| 6 | 26-40 | Host interface, Frame format | High |
+| 7-9 | 41-90 | Commands | Critical |
 | 10+ | 91+ | Card emulation, App notes | Medium |
 
-### 3. Process Chapter by Chapter
+### Process Chapter by Chapter
 
 For each chapter, view the page images and extract:
 
@@ -77,7 +108,7 @@ For each chapter, view the page images and extract:
 3. Protocol sections - ISO14443, MIFARE specifics
 4. Overview - for context
 
-### 4. Build Knowledge Summary
+## Step 4: Build Knowledge Summary
 
 Create/update `.skills/pn532/knowledge/overview.md`:
 
@@ -137,18 +168,17 @@ See page-45.png for timing diagram.
 REQA → ATQA → Anticollision → SELECT → SAK
 [Describe flow from diagram]
 
-### Frame Timing (p.XX)  
+### Frame Timing (p.XX)
 [Describe timing requirements]
 ```
 
-### 5. Update Metadata
+## Step 5: Update Metadata
 
 Create `.skills/pn532/knowledge/metadata.json`:
 ```json
 {
   "source": {
     "filename": "PN532_User_Manual.pdf",
-    "original_path": "/path/to/original.pdf",
     "revision": "X.X",
     "total_pages": 120
   },
@@ -164,20 +194,13 @@ Create `.skills/pn532/knowledge/metadata.json`:
 Process across multiple sessions:
 
 ```
-"Continue /pn532-init-docs - process pages 41-55 (commands chapter)"
+/pn532-init-docs pages 41-55
 ```
 
-The agent can now reference specific pages:
+The agent references specific page images:
 ```
-"Check .skills/pn532/pages/page-45.png for the InListPassiveTarget timing diagram"
+View .skills/pn532/pages/page-45.png for the InListPassiveTarget timing diagram
 ```
-
-## Later Reference
-
-When answering questions, the agent can:
-1. Check overview.md for quick reference
-2. View specific page images for details not in the summary
-3. Cite page numbers for user to verify
 
 ## Output
 
@@ -188,10 +211,10 @@ Processed: Pages 41-55 (Commands)
 
 Added to overview.md:
 - 8 commands documented
-- 3 diagrams described  
+- 3 diagrams described
 - Error code table
 
-Page images stored: .skills/pn532/pages/ (120 pages)
+Page images: .skills/pn532/pages/ (120 pages)
 Progress: 3/8 chapters processed
 
 Next suggested: Pages 56-70 (remaining commands)

@@ -1,59 +1,86 @@
 # /ntag424-init-docs
 
-Initialize or update the NTAG 424 DNA knowledge base from PDF documentation.
+Initialize or update the NTAG 424 DNA knowledge base from datasheet page images.
 
 ## Usage
 ```
-/ntag424-init-docs [path-to-pdf-or-directory]
+/ntag424-init-docs
+/ntag424-init-docs [document] [chapter-or-page-range]
 ```
 
 ## Examples
 ```
-/ntag424-init-docs ~/Documents/datasheets/NTAG424DNA.pdf
-/ntag424-init-docs ~/Documents/datasheets/AN12196.pdf
+/ntag424-init-docs
+/ntag424-init-docs datasheet pages 31-50
+/ntag424-init-docs an12196 sdm section
 ```
+
+## CRITICAL: Do NOT Read PDFs Directly
+
+**STOP. You MUST NOT attempt to read any PDF file directly.** PDFs are too large and will fail. This command works with pre-converted page images only.
 
 ## Recommended Documents
 
 | Document | Content | Priority |
 |----------|---------|----------|
-| NTAG 424 DNA datasheet | Commands, memory, specs | ⭐⭐ Critical |
-| AN12196 | SUN/SDM examples, hints | ⭐⭐⭐ Essential |
+| NTAG 424 DNA datasheet | Commands, memory, specs | Critical |
+| AN12196 | SUN/SDM examples, hints | Essential |
 | AN12321 | Key diversification | Medium |
 
-## Behavior
+## Step 1: Check for Existing Page Images (ALWAYS DO THIS FIRST)
 
-**IMPORTANT**: PDFs are too large to read directly. Process chapter-by-chapter as images to preserve diagrams.
+Before anything else, check if page images exist:
 
-### 1. Setup - Convert PDFs to Page Images
+```
+Check if directories exist:
+- .skills/ntag424/pages/datasheet/
+- .skills/ntag424/pages/an12196/
 
-```bash
-# Install poppler-utils if needed
-sudo apt-get install poppler-utils
-
-# Get the plugin directory
-PLUGIN_DIR=~/.claude/plugins/installed/ntag424-expert
-# Or if using local marketplace:
-# PLUGIN_DIR=/path/to/claude-plugins-marketplace/plugins/ntag424-expert
-
-# Create pages directories for each document
-mkdir -p "$PLUGIN_DIR/.skills/ntag424/pages/datasheet"
-mkdir -p "$PLUGIN_DIR/.skills/ntag424/pages/an12196"
-
-# Convert NTAG 424 DNA datasheet
-pdftoppm -png -r 150 "/path/to/NTAG424DNA.pdf" \
-  "$PLUGIN_DIR/.skills/ntag424/pages/datasheet/page"
-
-# Convert AN12196 (SUN/SDM application note)
-pdftoppm -png -r 150 "/path/to/AN12196.pdf" \
-  "$PLUGIN_DIR/.skills/ntag424/pages/an12196/page"
-
-# Verify
-ls "$PLUGIN_DIR/.skills/ntag424/pages/datasheet/"*.png | wc -l
-ls "$PLUGIN_DIR/.skills/ntag424/pages/an12196/"*.png | wc -l
+If any exist, list PNG files to see what's available
 ```
 
-Page images are now stored at:
+### If page images DO exist:
+Skip to **Step 3: Process Page Images**
+
+### If page images do NOT exist:
+Tell the user they need to create them first, then STOP. Do not attempt to read any PDF.
+
+**Tell the user:**
+```
+Page images not found at .skills/ntag424/pages/
+
+To initialize the knowledge base, first convert the PDFs to images:
+
+1. Install poppler-utils if needed:
+   sudo apt-get install poppler-utils
+
+2. Create the pages directories:
+   mkdir -p /path/to/plugin/.skills/ntag424/pages/datasheet
+   mkdir -p /path/to/plugin/.skills/ntag424/pages/an12196
+
+3. Convert the PDFs to PNG images:
+   pdftoppm -png -r 150 "/path/to/NTAG424DNA.pdf" ".skills/ntag424/pages/datasheet/page"
+   pdftoppm -png -r 150 "/path/to/AN12196.pdf" ".skills/ntag424/pages/an12196/page"
+
+4. Run this command again once images are created.
+
+The plugin directory is typically:
+- Installed: ~/.claude/plugins/installed/ntag424-expert
+- Local dev: /path/to/claude-plugins-marketplace/plugins/ntag424-expert
+```
+
+**Then STOP. Do not continue until the user creates the images.**
+
+## Step 2: Verify Page Images
+
+Once the user confirms images exist, verify them:
+
+```
+ls .skills/ntag424/pages/datasheet/*.png | wc -l
+ls .skills/ntag424/pages/an12196/*.png | wc -l
+```
+
+Expected structure:
 ```
 .skills/ntag424/pages/
 ├── datasheet/
@@ -66,7 +93,9 @@ Page images are now stored at:
     ...
 ```
 
-### 2. Get Document Structure
+## Step 3: Process Page Images
+
+### Get Document Structure
 
 View table of contents from each document.
 
@@ -75,19 +104,19 @@ View table of contents from each document.
 |---------|---------------|---------|----------|
 | 1-3 | 1-15 | Features, Ordering, Block diagram | Low |
 | 4-5 | 16-30 | Functional description, Memory | Medium |
-| 6 | 31-50 | **Command set** | ⭐⭐ Critical |
-| 7 | 51-65 | **Security (Auth, SDM)** | ⭐⭐ Critical |
+| 6 | 31-50 | **Command set** | Critical |
+| 7 | 51-65 | **Security (Auth, SDM)** | Critical |
 | 8+ | 66+ | Electrical specs, Package | Low |
 
 **AN12196 structure:**
 | Section | Typical Pages | Content | Priority |
 |---------|---------------|---------|----------|
 | 1-2 | 1-10 | Overview, Getting started | Medium |
-| 3 | 11-25 | **SUN/SDM configuration** | ⭐⭐⭐ Essential |
-| 4 | 26-35 | **Authentication examples** | ⭐⭐ Critical |
-| 5 | 36-45 | Backend verification code | ⭐⭐ Critical |
+| 3 | 11-25 | **SUN/SDM configuration** | Essential |
+| 4 | 26-35 | **Authentication examples** | Critical |
+| 5 | 36-45 | Backend verification code | Critical |
 
-### 3. Process Chapter by Chapter
+### Process Chapter by Chapter
 
 For each chapter, view page images and extract:
 
@@ -102,7 +131,7 @@ For each chapter, view page images and extract:
 3. AN12196 auth examples - practical flows
 4. Datasheet security chapter - theory behind auth
 
-### 4. Build Knowledge Summary
+## Step 4: Build Knowledge Summary
 
 Create/update `.skills/ntag424/knowledge/overview.md`:
 
@@ -123,7 +152,7 @@ Generated: [date]
 | 6 | 31-50 | Command set |
 | 7 | 51-65 | Security features |
 
-### AN12196  
+### AN12196
 | Section | Pages | Content |
 |---------|-------|---------|
 | 3 | 11-25 | SDM/SUN configuration |
@@ -221,7 +250,7 @@ See an12196/page-14.png for full bit definitions.
 See an12196/page-38.png for pseudocode.
 ```
 
-### 5. Update Metadata
+## Step 5: Update Metadata
 
 Create `.skills/ntag424/knowledge/metadata.json`:
 ```json
@@ -230,7 +259,6 @@ Create `.skills/ntag424/knowledge/metadata.json`:
     {
       "name": "datasheet",
       "filename": "NTAG424DNA.pdf",
-      "original_path": "/path/to/NTAG424DNA.pdf",
       "revision": "3.3",
       "pages": 85,
       "pages_dir": "../pages/datasheet"
@@ -238,8 +266,7 @@ Create `.skills/ntag424/knowledge/metadata.json`:
     {
       "name": "an12196",
       "filename": "AN12196.pdf",
-      "original_path": "/path/to/AN12196.pdf",
-      "revision": "1.3", 
+      "revision": "1.3",
       "pages": 48,
       "pages_dir": "../pages/an12196"
     }
@@ -258,20 +285,13 @@ Create `.skills/ntag424/knowledge/metadata.json`:
 Process across multiple sessions:
 
 ```
-"Continue /ntag424-init-docs - process AN12196 pages 11-20 (SDM config)"
+/ntag424-init-docs an12196 pages 11-20
 ```
 
-The agent can reference specific pages later:
+The agent references specific page images:
 ```
-"Check .skills/ntag424/pages/an12196/page-14.png for SDMOptions bit definitions"
+View .skills/ntag424/pages/an12196/page-14.png for SDMOptions bit definitions
 ```
-
-## Later Reference
-
-When answering questions, the agent can:
-1. Check overview.md for quick lookup
-2. View specific page images for diagrams/details
-3. Cite document and page for user verification
 
 ## Output
 
