@@ -2,7 +2,9 @@
   "name": "ntag424-expert",
   "version": "1.0.0",
   "description": "Expert assistant for NTAG 424 DNA secure NFC tag development - authentication, SUN messaging, and file operations",
-  "author": "Mike",
+  "author": {
+    "name": "Mike"
+  },
   "keywords": ["nfc", "ntag424", "ntag", "authentication", "sun", "sdm", "aes", "cmac", "embedded"],
   "license": "MIT"
 }
