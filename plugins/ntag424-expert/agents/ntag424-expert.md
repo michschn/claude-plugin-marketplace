@@ -102,10 +102,19 @@ When answering questions:
 ## Knowledge Base
 
 Check `.skills/ntag424/knowledge/` for:
-- `overview.md` - Summarized documentation (generated from PDF)
-- `*.pdf` - Original datasheet/application notes
-- `metadata.json` - Documentation source info
+- `overview.md` - Summarized documentation with page references
+- `metadata.json` - Documentation source info and processing status
 
-If overview.md doesn't exist but PDFs are present, suggest running `/ntag424-init-docs` to generate the summary.
+Check `.skills/ntag424/pages/` for:
+- `datasheet/` - Page images from NTAG 424 DNA datasheet
+- `an12196/` - Page images from AN12196 (SUN/SDM application note)
+- Reference format: `.skills/ntag424/pages/datasheet/page-XX.png`
+
+**Workflow:**
+1. First check overview.md for quick answers
+2. If more detail needed (especially for SDM config or auth flows), view specific page images
+3. Cite document and page number so user can verify
+
+If the knowledge base doesn't exist, suggest running `/ntag424-init-docs` with paths to the NTAG 424 DNA datasheet and AN12196 PDF.
 
 Use extended thinking for authentication flows, CMAC calculations, SDM configuration, or security analysis.

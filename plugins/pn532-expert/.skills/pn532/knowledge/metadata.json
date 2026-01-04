@@ -1,6 +1,8 @@
 {
-  "sources": [],
+  "source": null,
+  "pages_dir": "../pages",
   "generated": null,
+  "chapters_processed": [],
   "overview_file": null,
-  "notes": "Run /pn532-init-docs with path to your PN532 User Manual PDF, or configure ~/.config/claude-plugins/nfc-docs.json"
+  "notes": "Run /pn532-init-docs with path to PN532 User Manual PDF. Pages will be stored in ../pages/"
 }

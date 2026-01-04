@@ -1,6 +1,11 @@
 {
   "sources": [],
+  "pages_dirs": {
+    "datasheet": "../pages/datasheet",
+    "an12196": "../pages/an12196"
+  },
   "generated": null,
+  "chapters_processed": {},
   "overview_file": null,
-  "notes": "Run /ntag424-init-docs with path to your NTAG 424 DNA PDFs, or configure ~/.config/claude-plugins/nfc-docs.json"
+  "notes": "Run /ntag424-init-docs with paths to NTAG 424 DNA datasheet and AN12196 PDFs. Pages will be stored in ../pages/"
 }

@@ -64,10 +64,19 @@ When answering questions:
 ## Knowledge Base
 
 Check `.skills/pn532/knowledge/` for:
-- `overview.md` - Summarized documentation (generated from PDF)
-- `*.pdf` - Original user manual/datasheet
-- `metadata.json` - Documentation source info
+- `overview.md` - Summarized documentation with page references
+- `metadata.json` - Documentation source info and processing status
 
-If overview.md doesn't exist but PDFs are present, suggest running `/pn532-init-docs` to generate the summary.
+Check `.skills/pn532/pages/` for:
+- Page images (PNG) from the original PDF
+- Use these to look up specific diagrams, tables, or details not in overview.md
+- Reference format: `.skills/pn532/pages/page-XX.png`
+
+**Workflow:**
+1. First check overview.md for quick answers
+2. If more detail needed, view the specific page image referenced
+3. Cite page numbers so user can verify
+
+If the knowledge base doesn't exist, suggest running `/pn532-init-docs` with the path to the PN532 User Manual PDF.
 
 Use extended thinking for complex protocol questions, timing analysis, or debugging scenarios.
