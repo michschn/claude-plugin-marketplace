@@ -13,7 +13,7 @@ Provide an in-depth explanation of a Pigweed module with practical examples and 
 
 ### Phase 1: Fetch Module Documentation
 
-1. Check `skills/pigweed/knowledge/` for cached info on this module
+1. Check `.skills/pigweed/knowledge/` for cached info on this module
 2. Fetch the latest documentation from pigweed.dev:
    - `https://pigweed.dev/pw_<module>/docs.html`
    - Look for guide pages, API reference, and examples

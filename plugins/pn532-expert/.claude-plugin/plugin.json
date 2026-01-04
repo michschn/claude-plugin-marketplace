@@ -1,0 +1,8 @@
+{
+  "name": "pn532-expert",
+  "version": "1.0.0",
+  "description": "Expert assistant for PN532 NFC controller development - planning, code review, and hardware interfacing",
+  "author": "Mike",
+  "keywords": ["nfc", "pn532", "rfid", "embedded", "spi", "i2c", "iso14443"],
+  "license": "MIT"
+}

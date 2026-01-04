@@ -162,7 +162,7 @@ The plugin knows about these Pigweed modules:
 
 Contributions welcome! Areas that would be helpful:
 
-- Additional module documentation in `skills/pigweed/knowledge/`
+- Additional module documentation in `.skills/pigweed/knowledge/`
 - More anti-pattern detection rules
 - Platform-specific guidance (Zephyr, FreeRTOS, bare-metal)
 - Example transformations

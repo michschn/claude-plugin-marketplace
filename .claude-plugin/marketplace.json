@@ -1,6 +1,6 @@
 {
   "name": "mike-claude-plugins",
-  "description": "Mike's Claude Code plugins for embedded development and documentation management",
+  "description": "Mike's Claude Code plugins for embedded development, NFC hardware, and documentation management",
   "owner": {
     "name": "Mike"
   },
@@ -14,6 +14,16 @@
       "name": "docs-expert",
       "source": "./plugins/docs-expert",
       "description": "Documentation guardian for ADRs, requirements, and code-docs consistency"
+    },
+    {
+      "name": "pn532-expert",
+      "source": "./plugins/pn532-expert",
+      "description": "Expert for PN532 NFC controller - planning, code review, and hardware interfacing"
+    },
+    {
+      "name": "ntag424-expert",
+      "source": "./plugins/ntag424-expert",
+      "description": "Expert for NTAG 424 DNA secure NFC tags - authentication, SUN/SDM, and security"
     }
   ]
 }

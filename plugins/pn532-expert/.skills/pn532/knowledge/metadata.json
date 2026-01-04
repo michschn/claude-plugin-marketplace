@@ -1,0 +1,6 @@
+{
+  "sources": [],
+  "generated": null,
+  "overview_file": null,
+  "notes": "Run /pn532-init-docs with path to your PN532 User Manual PDF, or configure ~/.config/claude-plugins/nfc-docs.json"
+}

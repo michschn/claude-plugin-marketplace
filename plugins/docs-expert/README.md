@@ -184,7 +184,7 @@ Related ADRs, code files, external docs
 
 ## Templates
 
-The plugin includes templates in `skills/documentation/templates/`:
+The plugin includes templates in `.skills/documentation/templates/`:
 
 - `adr-template.md` - ADR format
 - `requirement-template.md` - Requirements document format

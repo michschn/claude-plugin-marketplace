@@ -136,7 +136,7 @@ Invoke the full agent (`@pigweed-expert`) for:
 
 ## Knowledge Cache
 
-Check `skills/pigweed/knowledge/` for cached documentation:
+Check `.skills/pigweed/knowledge/` for cached documentation:
 - `SUMMARY.md` - Comprehensive module summary
 - `metadata.json` - Cache freshness info
 

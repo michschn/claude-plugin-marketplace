@@ -26,7 +26,7 @@ First, analyze what the user is trying to build:
 
 ### Phase 2: Check Documentation
 
-1. Check `skills/pigweed/knowledge/` for cached module documentation
+1. Check `.skills/pigweed/knowledge/` for cached module documentation
 2. If docs are missing or you need specific module details, fetch from pigweed.dev:
    - `https://pigweed.dev/pw_<module>/docs.html` for module docs
    - `https://pigweed.dev/docs/concepts/` for design patterns

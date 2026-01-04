@@ -25,7 +25,7 @@ First, understand what the code is trying to accomplish:
 
 ### Phase 2: Check Documentation
 
-1. Check `skills/pigweed/knowledge/` for relevant cached documentation
+1. Check `.skills/pigweed/knowledge/` for relevant cached documentation
 2. If you need specific module details for recommendations, fetch from pigweed.dev
 3. Ensure your recommendations are based on current Pigweed APIs
 

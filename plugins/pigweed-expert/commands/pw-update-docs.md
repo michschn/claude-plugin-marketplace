@@ -65,7 +65,7 @@ Use extended thinking to deeply analyze the documentation:
 
 ### Phase 3: Generate Knowledge Summary
 
-Create a comprehensive summary file at `skills/pigweed/knowledge/SUMMARY.md` containing:
+Create a comprehensive summary file at `.skills/pigweed/knowledge/SUMMARY.md` containing:
 
 1. **Executive Summary**: Pigweed's design philosophy in 2-3 paragraphs
 2. **Module Quick Reference**: For each module:
@@ -80,7 +80,7 @@ Create a comprehensive summary file at `skills/pigweed/knowledge/SUMMARY.md` con
 
 ### Phase 4: Update Metadata
 
-Update `skills/pigweed/knowledge/metadata.json` with:
+Update `.skills/pigweed/knowledge/metadata.json` with:
 ```json
 {
   "last_updated": "<ISO timestamp>",

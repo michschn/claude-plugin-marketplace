@@ -1,0 +1,6 @@
+{
+  "sources": [],
+  "generated": null,
+  "overview_file": null,
+  "notes": "Run /ntag424-init-docs with path to your NTAG 424 DNA PDFs, or configure ~/.config/claude-plugins/nfc-docs.json"
+}
