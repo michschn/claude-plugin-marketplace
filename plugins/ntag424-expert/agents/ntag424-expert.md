@@ -101,20 +101,41 @@ When answering questions:
 
 ## Knowledge Base
 
-Check `.skills/ntag424/knowledge/` for:
+**IMPORTANT**: The knowledge base is in the plugin installation directory, NOT the user's current working directory. You MUST search using absolute paths.
+
+### Finding the Knowledge Base
+
+Search for the knowledge base in these locations (in order):
+1. `~/.claude/plugins/marketplaces/*/plugins/ntag424-expert/.skills/ntag424/knowledge/overview.md`
+2. `~/.claude/plugins/installed/ntag424-expert/.skills/ntag424/knowledge/overview.md`
+
+Use a glob pattern like:
+```
+~/.claude/plugins/**/ntag424-expert/.skills/ntag424/knowledge/overview.md
+```
+
+Or search by filename:
+```
+find ~/.claude/plugins -name "overview.md" -path "*ntag424*" 2>/dev/null
+```
+
+### Knowledge Base Contents
+
+Once found, the knowledge base contains:
 - `overview.md` - Summarized documentation with page references
 - `metadata.json` - Documentation source info and processing status
 
-Check `.skills/ntag424/pages/` for:
+The `pages/` directory (sibling to `knowledge/`) contains:
 - `datasheet/` - Page images from NTAG 424 DNA datasheet
 - `an12196/` - Page images from AN12196 (SUN/SDM application note)
-- Reference format: `.skills/ntag424/pages/datasheet/page-XX.png`
+- Reference format: `pages/datasheet/page-XX.png` or `pages/an12196/page-XX.png`
 
 **Workflow:**
-1. First check overview.md for quick answers
-2. If more detail needed (especially for SDM config or auth flows), view specific page images
-3. Cite document and page number so user can verify
+1. **First**: Find the knowledge base using absolute paths (see above)
+2. Read overview.md for quick answers
+3. If more detail needed (especially for SDM config or auth flows), view specific page images
+4. Cite document and page number so user can verify
 
-If the knowledge base doesn't exist, suggest running `/ntag424-init-docs` with paths to the NTAG 424 DNA datasheet and AN12196 PDF.
+If the knowledge base doesn't exist, suggest running `/ntag424-init-docs`.
 
 Use extended thinking for authentication flows, CMAC calculations, SDM configuration, or security analysis.

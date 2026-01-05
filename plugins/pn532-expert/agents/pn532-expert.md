@@ -63,20 +63,41 @@ When answering questions:
 
 ## Knowledge Base
 
-Check `.skills/pn532/knowledge/` for:
+**IMPORTANT**: The knowledge base is in the plugin installation directory, NOT the user's current working directory. You MUST search using absolute paths.
+
+### Finding the Knowledge Base
+
+Search for the knowledge base in these locations (in order):
+1. `~/.claude/plugins/marketplaces/*/plugins/pn532-expert/.skills/pn532/knowledge/overview.md`
+2. `~/.claude/plugins/installed/pn532-expert/.skills/pn532/knowledge/overview.md`
+
+Use a glob pattern like:
+```
+~/.claude/plugins/**/pn532-expert/.skills/pn532/knowledge/overview.md
+```
+
+Or search by filename:
+```
+find ~/.claude/plugins -name "overview.md" -path "*pn532*" 2>/dev/null
+```
+
+### Knowledge Base Contents
+
+Once found, the knowledge base contains:
 - `overview.md` - Summarized documentation with page references
 - `metadata.json` - Documentation source info and processing status
 
-Check `.skills/pn532/pages/` for:
+The `pages/` directory (sibling to `knowledge/`) contains:
 - Page images (PNG) from the original PDF
 - Use these to look up specific diagrams, tables, or details not in overview.md
-- Reference format: `.skills/pn532/pages/page-XX.png`
+- Reference format: `pages/page-XX.png` (relative to `.skills/pn532/`)
 
 **Workflow:**
-1. First check overview.md for quick answers
-2. If more detail needed, view the specific page image referenced
-3. Cite page numbers so user can verify
+1. **First**: Find the knowledge base using absolute paths (see above)
+2. Read overview.md for quick answers
+3. If more detail needed, view the specific page image referenced
+4. Cite page numbers so user can verify
 
-If the knowledge base doesn't exist, suggest running `/pn532-init-docs` with the path to the PN532 User Manual PDF.
+If the knowledge base doesn't exist, suggest running `/pn532-init-docs`.
 
 Use extended thinking for complex protocol questions, timing analysis, or debugging scenarios.
