@@ -24,6 +24,11 @@
       "name": "ntag424-expert",
       "source": "./plugins/ntag424-expert",
       "description": "Expert for NTAG 424 DNA secure NFC tags - authentication, SUN/SDM, and security"
+    },
+    {
+      "name": "lvgl-expert",
+      "source": "./plugins/lvgl-expert",
+      "description": "Expert for LVGL embedded graphics - UI planning, code review, and widget guidance"
     }
   ]
 }
