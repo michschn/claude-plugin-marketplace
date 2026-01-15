@@ -1,0 +1,29 @@
+{
+  "last_updated": "2026-01-15T20:56:45Z",
+  "lvgl_version": "9.x",
+  "widgets_documented": [
+    "lv_obj",
+    "lv_label",
+    "lv_button",
+    "lv_bar",
+    "lv_slider",
+    "lv_switch",
+    "lv_dropdown",
+    "lv_textarea",
+    "lv_tabview",
+    "lv_chart",
+    "lv_arc",
+    "lv_list",
+    "lv_msgbox"
+  ],
+  "concepts_documented": [
+    "flex_layout",
+    "grid_layout",
+    "style_system",
+    "event_handling",
+    "animations",
+    "timers"
+  ],
+  "source": "docs.lvgl.io/master",
+  "notes": "Run /lvgl-update-docs to refresh this cache with current LVGL documentation"
+}

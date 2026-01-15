@@ -1,7 +1,7 @@
 ---
 name: pigweed-expert
 description: Expert in Pigweed embedded development. Consult for architecture decisions, code review, and ensuring idiomatic usage of Pigweed modules.
-model: claude-sonnet-4-20250514
+model: sonnet
 tools:
   - web_fetch
   - read_file

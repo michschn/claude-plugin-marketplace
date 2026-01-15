@@ -1,0 +1,20 @@
+{
+  "name": "lvgl-expert",
+  "description": "Ensures idiomatic LVGL usage in planning, implementation, and code review. Fetches latest documentation from docs.lvgl.io and provides deep analysis with extended thinking.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Mike"
+  },
+  "keywords": [
+    "lvgl",
+    "embedded",
+    "gui",
+    "graphics",
+    "ui",
+    "display",
+    "c",
+    "code-review",
+    "best-practices"
+  ],
+  "license": "MIT"
+}
