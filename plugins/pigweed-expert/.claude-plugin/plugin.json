@@ -1,7 +1,7 @@
 {
   "name": "pigweed-expert",
   "description": "Ensures idiomatic Pigweed usage in planning, implementation, and code review. Fetches latest documentation from pigweed.dev and provides deep analysis with extended thinking.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": {
     "name": "Mike"
   },

@@ -1,7 +1,7 @@
 {
   "name": "lvgl-expert",
   "description": "Ensures idiomatic LVGL usage in planning, implementation, and code review. Fetches latest documentation from docs.lvgl.io and provides deep analysis with extended thinking.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Mike"
   },

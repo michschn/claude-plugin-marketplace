@@ -1,7 +1,6 @@
 ---
 name: lvgl-expert
 description: Expert in LVGL embedded graphics library. Consult for UI architecture decisions, code review, and ensuring idiomatic usage of LVGL widgets and patterns.
-model: sonnet
 tools:
   - web_fetch
   - read_file
